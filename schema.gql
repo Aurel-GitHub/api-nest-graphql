@@ -19,15 +19,32 @@ type AccountCreateOutput {
   account: Account!
 }
 
+type AccountUpdateOutput {
+  account: Account!
+}
+
+type AccountDeleteOutput {
+  accountId: ID!
+}
+
 type Query {
   sayHello: String!
 }
 
 type Mutation {
   accountCreate(input: AccountCreateInput!): AccountCreateOutput!
+  accountUpdate(accountId: ID!, input: AccountUpdateInput!): AccountUpdateOutput!
+  accountDelete(accountId: ID!): AccountDeleteOutput!
 }
 
 input AccountCreateInput {
+  title: String!
+  total: Float!
+  image: String!
+  created_at: DateTime!
+}
+
+input AccountUpdateInput {
   title: String!
   total: Float!
   image: String!
