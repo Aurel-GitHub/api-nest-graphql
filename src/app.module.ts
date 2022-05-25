@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { AccountModule } from './account/account.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AppService } from './app.service';
         synchronize: true,
       }),
     }),
+    AccountModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
