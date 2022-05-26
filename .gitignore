@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # TODO
 .todo
+
+# env
+.env
