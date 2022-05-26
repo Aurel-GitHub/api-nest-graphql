@@ -9,8 +9,6 @@ export class AccountCreateInput {
   total: number;
   @Field(() => String)
   image: string;
-  @Field(() => Date)
-  createdAt: Date;
 }
 
 @ObjectType()

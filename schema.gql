@@ -83,14 +83,12 @@ input AccountCreateInput {
   title: String!
   total: Float!
   image: String!
-  createdAt: DateTime!
 }
 
 input AccountUpdateInput {
   title: String!
   total: Float!
   image: String!
-  createdAt: DateTime!
 }
 
 input UserCreateInput {
