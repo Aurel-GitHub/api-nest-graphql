@@ -22,6 +22,15 @@ type Account {
   image: String!
 }
 
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  email: String!
+  avatar: String
+}
+
 type AccountCreateOutput {
   account: Account!
 }
@@ -37,15 +46,6 @@ type AccountDeleteOutput {
 type AccountsPagination {
   totalCount: Float!
   nodes: [Account!]!
-}
-
-type User {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  name: String!
-  email: String!
-  avatar: String
 }
 
 type UserCreateOutput {

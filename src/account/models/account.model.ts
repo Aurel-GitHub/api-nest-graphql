@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 import { Node } from 'src/pagination/models/node.model';
+import { User } from 'src/user/models/user.model';
 
 @Entity()
 @ObjectType()
@@ -16,4 +17,11 @@ export class Account extends Node {
   @Field(() => String)
   @Column()
   image: string;
+
+  @ManyToOne(() => User, (user) => user.accounts)
+  @JoinColumn()
+  user: User;
+
+  @RelationId((self: Account) => self.user)
+  readonly userId: User['id'];
 }

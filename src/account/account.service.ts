@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
 import { SortDirection } from 'src/pagination/dto/pagination.dto';
+import { User } from 'src/user/models/user.model';
 import { Repository } from 'typeorm';
 import { AccountCreateOutput } from './dto/account-create.dto';
 import { AccountCreateInput } from './dto/account-create.dto';
@@ -18,9 +20,14 @@ export class AccountService {
     private accountRepository: Repository<Account>,
   ) {}
 
-  async accountCreate(input: AccountCreateInput): Promise<AccountCreateOutput> {
-    const newAccount = this.accountRepository.create(input);
-    const account = await this.accountRepository.save(newAccount);
+  async accountCreate(
+    user: IJwtPayload,
+    input: AccountCreateInput,
+  ): Promise<AccountCreateOutput> {
+    const account = this.accountRepository.create(input);
+    account.user = new User();
+    account.user.id = user.id;
+    await account.save();
     return { account };
   }
 
