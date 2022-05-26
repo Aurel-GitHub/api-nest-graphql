@@ -13,11 +13,10 @@ export class User extends Node {
   @Column({ unique: true })
   email: string;
 
-  @Field(() => String)
   @Column()
   password: string;
 
   @Field(() => String, { nullable: true })
-  @Column()
+  @Column({ nullable: true })
   avatar?: string;
 }
