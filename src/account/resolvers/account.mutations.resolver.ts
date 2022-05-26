@@ -7,16 +7,20 @@ import { AccountService } from '../account.service';
 import { Account } from '../models/account.model';
 import { AccountDeleteOutput } from '../dto/account-delete.dto';
 import { type } from 'os';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Resolver(Account)
 export class AccountMutationsResolver {
   constructor(private accountService: AccountService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => AccountCreateOutput)
   async accountCreate(@Args('input') input: AccountCreateInput) {
     return this.accountService.accountCreate(input);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => AccountUpdateOutput)
   async accountUpdate(
     @Args({ name: 'accountId', type: () => ID }) accountId: Account['id'],
@@ -25,6 +29,7 @@ export class AccountMutationsResolver {
     return this.accountService.accountUpdate(accountId, input);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => AccountDeleteOutput)
   async accountDelete(
     @Args({ name: 'accountId', type: () => ID }) accountId: Account['id'],

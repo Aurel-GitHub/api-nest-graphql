@@ -5,13 +5,14 @@ import { PassportModule } from '@nestjs/passport';
 import { UserModule } from 'src/user/user.module';
 import { AuthService } from './auth.service';
 import { AuthMutationResolver } from './resolvers/auth.mutation.resolvers';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 
 @Module({
-  providers: [AuthService, AuthMutationResolver, LocalStrategy],
   imports: [
     UserModule,
     PassportModule,
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -21,5 +22,6 @@ import { LocalStrategy } from './strategies/local.strategy';
       }),
     }),
   ],
+  providers: [AuthService, AuthMutationResolver, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
