@@ -10,7 +10,7 @@ export class AccountCreateInput {
   @Field(() => String)
   image: string;
   @Field(() => Date)
-  created_at: Date;
+  createdAt: Date;
 }
 
 @ObjectType()

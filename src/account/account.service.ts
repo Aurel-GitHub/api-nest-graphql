@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { SortDirection } from 'src/pagination/dto/pagination.dto';
 import { Repository } from 'typeorm';
 import { AccountCreateOutput } from './dto/account-create.dto';
 import { AccountCreateInput } from './dto/account-create.dto';
 import { AccountDeleteOutput } from './dto/account-delete.dto';
+import {
+  AccountsPagination,
+  AccountsPaginationArgs,
+} from './dto/account-pagination.dto';
 import { AccountUpdateInput } from './dto/account-update.dto';
 import { AccountUpdateOutput } from './dto/account-update.dto';
 import { Account } from './models/account.model';
@@ -39,7 +44,29 @@ export class AccountService {
     return { accountId };
   }
 
-  async accountsList(): Promise<Account[]> {
-    return this.accountRepository.find();
+  async accountPagination(
+    args: AccountsPaginationArgs,
+  ): Promise<AccountsPagination> {
+    const queryBuilder = this.accountRepository.createQueryBuilder('account');
+    queryBuilder.take(args.take);
+    queryBuilder.take(args.skip);
+    if (args.sortBy) {
+      if (args.sortBy.createdAt !== null) {
+        queryBuilder.addOrderBy(
+          'account.createdAt',
+          args.sortBy.createdAt === SortDirection.ASC ? 'ASC' : 'DESC',
+        );
+      }
+      if (args.sortBy.title !== null) {
+        queryBuilder.addOrderBy(
+          'account.title',
+          args.sortBy.title === SortDirection.ASC ? 'ASC' : 'DESC',
+        );
+      }
+    }
+
+    const [nodes, totalCount] = await queryBuilder.getManyAndCount();
+
+    return { nodes, totalCount };
   }
 }

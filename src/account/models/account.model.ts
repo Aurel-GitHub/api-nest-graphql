@@ -1,13 +1,10 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Column, Entity } from 'typeorm';
+import { Node } from 'src/pagination/models/node.model';
 
 @Entity()
 @ObjectType()
-export class Account extends BaseEntity {
-  @Field(() => ID)
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Account extends Node {
   @Field(() => String)
   @Column()
   title: string;
@@ -19,8 +16,4 @@ export class Account extends BaseEntity {
   @Field(() => String)
   @Column()
   image: string;
-
-  @Field(() => Date)
-  @Column()
-  created_at: Date;
 }
