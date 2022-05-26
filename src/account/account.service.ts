@@ -38,4 +38,8 @@ export class AccountService {
     await account.remove();
     return { accountId };
   }
+
+  async accountsList(): Promise<Account[]> {
+    return this.accountRepository.find();
+  }
 }

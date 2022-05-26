@@ -29,6 +29,7 @@ type AccountDeleteOutput {
 
 type Query {
   sayHello: String!
+  accountList: [Account!]!
 }
 
 type Mutation {
