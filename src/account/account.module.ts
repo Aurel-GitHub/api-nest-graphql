@@ -8,5 +8,6 @@ import { AccountQueriesResolver } from './resolvers/account.queries.resolver';
 @Module({
   imports: [TypeOrmModule.forFeature([Account])],
   providers: [AccountService, AccountMutationsResolver, AccountQueriesResolver],
+  exports: [AccountService],
 })
 export class AccountModule {}

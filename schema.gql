@@ -13,6 +13,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Expense {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  total: Float!
+  title: String!
+  image: String!
+  isFixed: Boolean!
+}
+
 type Account {
   id: ID!
   createdAt: DateTime!
@@ -56,6 +66,10 @@ type AuthLoginOutput {
   accessToken: String!
 }
 
+type ExpenseCreateOutput {
+  expense: Expense!
+}
+
 type Query {
   sayHello: String!
   accountPagination(skip: Int!, take: Int!, sortBy: AccountPaginationSortBy): AccountsPagination!
@@ -77,6 +91,7 @@ type Mutation {
   accountDelete(accountId: ID!): AccountDeleteOutput!
   authLogin(username: String!, password: String!): AuthLoginOutput!
   userCreate(input: UserCreateInput!): UserCreateOutput!
+  expenseCreate(input: ExpenseCreateInput!): ExpenseCreateOutput!
 }
 
 input AccountCreateInput {
@@ -95,4 +110,12 @@ input UserCreateInput {
   name: String!
   email: String!
   password: String!
+}
+
+input ExpenseCreateInput {
+  accountId: String!
+  total: Float!
+  title: String!
+  image: String!
+  isFixed: Boolean!
 }

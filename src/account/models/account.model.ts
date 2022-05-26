@@ -1,7 +1,15 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  RelationId,
+} from 'typeorm';
 import { Node } from 'src/pagination/models/node.model';
 import { User } from 'src/user/models/user.model';
+import { Expense } from 'src/expense/models/expense.model';
 
 @Entity()
 @ObjectType()
@@ -24,4 +32,8 @@ export class Account extends Node {
 
   @RelationId((self: Account) => self.user)
   readonly userId: User['id'];
+
+  @OneToMany(() => Expense, (expense) => expense.account)
+  @JoinColumn()
+  expenses: Expense;
 }

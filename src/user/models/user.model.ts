@@ -2,6 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { Node } from 'src/pagination/models/node.model';
 import { Account } from 'src/account/models/account.model';
+import { Expense } from 'src/expense/models/expense.model';
 
 @Entity()
 @ObjectType()
@@ -23,4 +24,7 @@ export class User extends Node {
 
   @OneToMany(() => Account, (target) => target.user)
   accounts: Account[];
+
+  @OneToMany(() => Expense, (target) => target.user)
+  expenses: Expense[];
 }

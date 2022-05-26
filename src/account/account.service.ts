@@ -49,6 +49,10 @@ export class AccountService {
     return { accountId };
   }
 
+  async accountGetById(accountId: Account['id']): Promise<Account> {
+    return this.accountRepository.findOneOrFail(accountId);
+  }
+
   async accountPagination(
     args: AccountsPaginationArgs,
   ): Promise<AccountsPagination> {
