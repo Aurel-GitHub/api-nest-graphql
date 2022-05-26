@@ -52,6 +52,10 @@ type UserCreateOutput {
   user: User!
 }
 
+type AuthLoginOutput {
+  accessToken: String!
+}
+
 type Query {
   sayHello: String!
   accountPagination(skip: Int!, take: Int!, sortBy: AccountPaginationSortBy): AccountsPagination!
@@ -71,6 +75,7 @@ type Mutation {
   accountCreate(input: AccountCreateInput!): AccountCreateOutput!
   accountUpdate(accountId: ID!, input: AccountUpdateInput!): AccountUpdateOutput!
   accountDelete(accountId: ID!): AccountDeleteOutput!
+  authLogin(username: String!, password: String!): AuthLoginOutput!
   userCreate(input: UserCreateInput!): UserCreateOutput!
 }
 
