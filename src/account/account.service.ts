@@ -5,10 +5,8 @@ import { Repository } from 'typeorm';
 import { AccountCreateOutput } from './dto/account-create.dto';
 import { AccountCreateInput } from './dto/account-create.dto';
 import { AccountDeleteOutput } from './dto/account-delete.dto';
-import {
-  AccountsPagination,
-  AccountsPaginationArgs,
-} from './dto/account-pagination.dto';
+import { AccountsPaginationArgs } from './dto/account-pagination.dto';
+import { AccountsPagination } from './dto/account-pagination.dto';
 import { AccountUpdateInput } from './dto/account-update.dto';
 import { AccountUpdateOutput } from './dto/account-update.dto';
 import { Account } from './models/account.model';

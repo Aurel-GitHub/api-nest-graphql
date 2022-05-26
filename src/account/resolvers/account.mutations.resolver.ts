@@ -6,7 +6,6 @@ import { AccountUpdateInput } from '../dto/account-update.dto';
 import { AccountService } from '../account.service';
 import { Account } from '../models/account.model';
 import { AccountDeleteOutput } from '../dto/account-delete.dto';
-import { type } from 'os';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
