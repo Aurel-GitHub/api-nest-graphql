@@ -1,9 +1,7 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { AccountService } from '../account.service';
-import {
-  AccountsPagination,
-  AccountsPaginationArgs,
-} from '../dto/account-pagination.dto';
+import { AccountsPaginationArgs } from '../dto/account-pagination.dto';
+import { AccountsPagination } from '../dto/account-pagination.dto';
 import { Account } from '../models/account.model';
 
 @Resolver(Account)
