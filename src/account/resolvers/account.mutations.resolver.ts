@@ -9,6 +9,8 @@ import { AccountDeleteOutput } from '../dto/account-delete.dto';
 import { UseGuards } from '@nestjs/common';
 import { CurrentUser, JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
+import { GqlThrottlerGuard } from 'src/security/guards/gql-throttler.guard';
+import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 
 @Resolver(Account)
 export class AccountMutationsResolver {
@@ -23,7 +25,7 @@ export class AccountMutationsResolver {
     return this.accountService.accountCreate(user, input);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, GqlThrottlerGuard, GqlAuthGuard)
   @Mutation(() => AccountUpdateOutput)
   async accountUpdate(
     @Args({ name: 'accountId', type: () => ID }) accountId: Account['id'],

@@ -19,6 +19,9 @@ import { ExpenseModule } from './expense/expense.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
+      cors: {
+        origin: 'http://localhost:3000',
+      },
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
