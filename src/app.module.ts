@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AccountModule } from './account/account.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
@@ -32,6 +33,10 @@ import { ExpenseModule } from './expense/expense.module';
         entities: [join(__dirname, '**', '*.model.{ts,js}')],
         synchronize: true,
       }),
+    }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
     }),
     AccountModule,
     AuthModule,
