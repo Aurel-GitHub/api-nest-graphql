@@ -12,6 +12,7 @@ import { AccountModule } from './account/account.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ExpenseModule } from './expense/expense.module';
+import { ComplexityPlugin } from './plugins/complexity.plugins';
 
 @Module({
   imports: [
@@ -47,6 +48,6 @@ import { ExpenseModule } from './expense/expense.module';
     ExpenseModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver],
+  providers: [AppService, AppResolver, ComplexityPlugin],
 })
 export class AppModule {}
