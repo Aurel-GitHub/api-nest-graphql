@@ -11,7 +11,7 @@ export class ComplexityPlugin implements ApolloServerPlugin {
   constructor(private gqlSchemaHost: GraphQLSchemaHost) {}
 
   async requestDidStart(): Promise<GraphQLRequestListener> {
-    const maxComplexity = 10;
+    const maxComplexity = 30;
     const { schema } = this.gqlSchemaHost;
 
     return {
@@ -31,7 +31,6 @@ export class ComplexityPlugin implements ApolloServerPlugin {
             `Query is too complex: ${complexity}. Maximum allowed complexity: ${maxComplexity}`,
           );
         }
-        console.log('Query Complexity:', complexity);
       },
     };
   }

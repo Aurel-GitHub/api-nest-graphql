@@ -16,7 +16,7 @@ import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 export class AccountMutationsResolver {
   constructor(private accountService: AccountService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, GqlThrottlerGuard, GqlAuthGuard)
   @Mutation(() => AccountCreateOutput)
   async accountCreate(
     @CurrentUser() user: IJwtPayload,
@@ -34,7 +34,7 @@ export class AccountMutationsResolver {
     return this.accountService.accountUpdate(accountId, input);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, GqlThrottlerGuard, GqlAuthGuard)
   @Mutation(() => AccountDeleteOutput)
   async accountDelete(
     @Args({ name: 'accountId', type: () => ID }) accountId: Account['id'],
