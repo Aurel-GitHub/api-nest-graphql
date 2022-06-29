@@ -12,11 +12,11 @@ export abstract class Node extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field(() => Date)
+  @Field(() => Date, { complexity: 3 })
   @CreateDateColumn()
   createdAt: Date;
 
-  @Field(() => Date)
+  @Field(() => Date, { complexity: 3 })
   @UpdateDateColumn()
   updatedAt: Date;
 }

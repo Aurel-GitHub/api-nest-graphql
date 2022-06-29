@@ -21,19 +21,19 @@ export class Expense extends Node {
   @RelationId((self: Expense) => self.account)
   readonly accountId: Account['id'];
 
-  @Field(() => Number)
+  @Field(() => Number, { complexity: 3 })
   @Column()
   total: number;
 
-  @Field(() => String)
+  @Field(() => String, { complexity: 3 })
   @Column()
   title: string;
 
-  @Field(() => String)
+  @Field(() => String, { complexity: 3 })
   @Column()
   image: string;
 
-  @Field(() => Boolean)
+  @Field(() => Boolean, { complexity: 3 })
   @Column()
   isFixed: boolean;
 }

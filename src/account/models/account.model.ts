@@ -14,15 +14,15 @@ import { Expense } from 'src/expense/models/expense.model';
 @Entity()
 @ObjectType()
 export class Account extends Node {
-  @Field(() => String)
+  @Field(() => String, { complexity: 3 })
   @Column()
   title: string;
 
-  @Field(() => Number)
+  @Field(() => Number, { complexity: 3 })
   @Column()
   total: number;
 
-  @Field(() => String)
+  @Field(() => String, { complexity: 3 })
   @Column()
   image: string;
 
