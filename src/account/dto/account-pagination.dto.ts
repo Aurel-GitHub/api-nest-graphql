@@ -1,7 +1,8 @@
 import { ArgsType, Field, InputType, ObjectType } from '@nestjs/graphql';
-import { Pagination, PaginationArgs } from 'src/pagination/dto/pagination.dto';
-import { PaginationSortBy } from 'src/pagination/dto/pagination.dto';
-import { SortDirection } from 'src/pagination/dto/pagination.dto';
+import { PaginationArgs } from '../../pagination/dto/pagination.dto';
+import { Pagination } from '../../pagination/dto/pagination.dto';
+import { PaginationSortBy } from '../../pagination/dto/pagination.dto';
+import { SortDirection } from '../../pagination/dto/pagination.dto';
 import { Account } from '../models/account.model';
 
 @InputType()

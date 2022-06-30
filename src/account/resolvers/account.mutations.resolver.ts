@@ -7,10 +7,10 @@ import { AccountService } from '../account.service';
 import { Account } from '../models/account.model';
 import { AccountDeleteOutput } from '../dto/account-delete.dto';
 import { UseGuards } from '@nestjs/common';
-import { CurrentUser, JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
-import { GqlThrottlerGuard } from 'src/security/guards/gql-throttler.guard';
-import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
+import { CurrentUser, JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { IJwtPayload } from '../../auth/interfaces/IJwtPayload';
+import { GqlThrottlerGuard } from '../../security/guards/gql-throttler.guard';
+import { GqlAuthGuard } from '../../auth/guards/gql-auth.guard';
 
 @Resolver(Account)
 export class AccountMutationsResolver {

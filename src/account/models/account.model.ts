@@ -1,15 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  RelationId,
-} from 'typeorm';
-import { Node } from 'src/pagination/models/node.model';
-import { User } from 'src/user/models/user.model';
-import { Expense } from 'src/expense/models/expense.model';
+import { Column, Entity, JoinColumn } from 'typeorm';
+import { ManyToOne, OneToMany, RelationId } from 'typeorm';
+import { Node } from '../../pagination/models/node.model';
+import { User } from '../../user/models/user.model';
+import { Expense } from '../../expense/models/expense.model';
 
 @Entity()
 @ObjectType()

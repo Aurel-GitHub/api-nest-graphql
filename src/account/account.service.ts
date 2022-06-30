@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
-import { SortDirection } from 'src/pagination/dto/pagination.dto';
-import { User } from 'src/user/models/user.model';
+import { IJwtPayload } from '../auth/interfaces/IJwtPayload';
+import { SortDirection } from '../pagination/dto/pagination.dto';
+import { User } from '../user/models/user.model';
 import { Repository } from 'typeorm';
 import { AccountCreateOutput } from './dto/account-create.dto';
 import { AccountCreateInput } from './dto/account-create.dto';

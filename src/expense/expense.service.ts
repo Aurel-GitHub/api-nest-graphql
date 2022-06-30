@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
+import { IJwtPayload } from '../auth/interfaces/IJwtPayload';
 import { Repository } from 'typeorm';
 import { ExpenseCreateInput } from './dto/expense-create.dto';
 import { ExpenseCreateOutput } from './dto/expense-create.dto';
 import { Expense } from './models/expense.model';
-import { AccountService } from 'src/account/account.service';
-import { User } from 'src/user/models/user.model';
+import { AccountService } from '../account/account.service';
+import { User } from '../user/models/user.model';
 
 @Injectable()
 export class ExpenseService {
