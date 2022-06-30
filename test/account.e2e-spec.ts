@@ -1,20 +1,13 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request = require('supertest');
-import { AppModule } from '../src/app.module';
 import connection from './connection';
+import { getApplication } from './util/get-application';
 
 describe('AccountResolver (e2e)', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await connection.clear();
-    await app.init();
+  beforeAll(async () => {
+    app = await getApplication();
   });
 
   afterAll(async () => {
@@ -25,7 +18,7 @@ describe('AccountResolver (e2e)', () => {
   const gql = '/graphql';
 
   describe('createAccount', () => {
-    it('should create a new account', () => {
+    it('should create a new account', async () => {
       return request(app.getHttpServer())
         .post(gql)
         .send({
@@ -48,7 +41,8 @@ describe('AccountResolver (e2e)', () => {
         })
         .expect(200)
         .expect((res) => {
-          expect(res.body.data.accountCreate).toEqual({
+          console.log('res', res.body);
+          expect(res.body.data).toMatchObject({
             title: 'test after helmet update',
             total: 1232,
             image: 'https://picsum.photos/seed/picsum/200/300',
