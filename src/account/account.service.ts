@@ -27,7 +27,7 @@ export class AccountService {
     const account = this.accountRepository.create(input);
     account.user = new User();
     account.user.id = user.id;
-    await account.save();
+    account.save;
     return { account };
   }
 
