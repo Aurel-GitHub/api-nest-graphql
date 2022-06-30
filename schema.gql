@@ -73,6 +73,7 @@ type ExpenseCreateOutput {
 type Query {
   sayHello: String!
   accountPagination(skip: Int!, take: Int!, sortBy: AccountPaginationSortBy): AccountsPagination!
+  getAccount(id: String!): Account!
 }
 
 input AccountPaginationSortBy {

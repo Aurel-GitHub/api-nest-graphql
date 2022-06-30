@@ -9,12 +9,17 @@ import { AccountsPagination } from '../dto/account-pagination.dto';
 import { Account } from '../models/account.model';
 
 @Resolver(Account)
-@UseGuards(JwtAuthGuard, GqlThrottlerGuard, GqlAuthGuard)
 export class AccountQueriesResolver {
   constructor(private accountService: AccountService) {}
 
   @Query(() => AccountsPagination)
   async accountPagination(@Args() args: AccountsPaginationArgs) {
     return this.accountService.accountPagination(args);
+  }
+
+  @UseGuards(JwtAuthGuard, GqlThrottlerGuard, GqlAuthGuard)
+  @Query(() => Account)
+  async getAccount(@Args('id') id: string): Promise<Account> {
+    return this.accountService.accountGetById(id);
   }
 }

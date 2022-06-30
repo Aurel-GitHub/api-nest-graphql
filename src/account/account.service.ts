@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IJwtPayload } from 'src/auth/interfaces/IJwtPayload';
 import { SortDirection } from 'src/pagination/dto/pagination.dto';
@@ -50,7 +50,12 @@ export class AccountService {
   }
 
   async accountGetById(accountId: Account['id']): Promise<Account> {
-    return this.accountRepository.findOneOrFail(accountId);
+    const account = this.accountRepository.findOneOrFail(accountId);
+    if (account) {
+      return account;
+    } else {
+      throw new NotFoundException();
+    }
   }
 
   async accountPagination(
